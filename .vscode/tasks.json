@@ -1,0 +1,213 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            // 在当前项目目录创建 build 文件夹
+            "label": "mkdir",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "powershell"
+                },
+                "cwd": "${workspaceFolder}",
+            },
+            "command": "mkdir",
+            "args": [
+                "-Force",
+                "build-debug",
+                ",",
+                "build-release"
+            ]
+        },
+        {
+            "label": "qmake-debug",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "powershell"
+                },
+                "cwd": "${workspaceFolder}/build-debug",
+            },
+            "command": "C:\\Qt\\5.15.2\\msvc2019_64\\bin\\qmake.exe",
+            "args": [
+                "../${workspaceFolderBasename}.pro",
+                "-spec",
+                "win32-msvc",
+                "\"CONFIG+=debug\"",
+                "\"CONFIG+=qml_debug\"",
+                "\"QMAKE_LFLAGS+=/INCREMENTAL:NO\"",
+                "\"QMAKE_LFLAGS_DEBUG+=/DEBUG:FASTLINK\"",
+                "\"QMAKE_CXXFLAGS+=/FC\"",  
+            ],
+            "dependsOn": [
+                "mkdir"
+            ]
+        },
+        {
+            "label": "make-debug",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "powershell"
+                },
+                "cwd": "${workspaceFolder}/build-debug"
+            },
+            "command": "C:\\Qt\\Tools\\QtCreator\\bin\\jom\\jom.exe",
+            "args": [
+                "-c",
+                "-f",
+                "Makefile",
+                "-j8"
+            ],
+        "problemMatcher": {
+            "owner": "cpp",
+            "fileLocation": [
+                "relative",
+                "${workspaceFolder}"
+            ],
+            "pattern": {
+                "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                "file": 1,
+                "line": 2,
+                "column": 3,
+                "severity": 4,
+                "message": 5
+            }
+        },
+            "dependsOn": [
+                "qmake-debug"
+            ]
+        },
+        {
+            "label": "run-debug",
+            "type": "process",
+            "options": {
+                "shell": {
+                    "executable": "powershell"
+                },
+                "cwd": "${workspaceFolder}/build-debug"
+            },
+            "command": "${workspaceFolder}/build-debug/imolProgram.exe",
+            "dependsOn": [
+                "make-debug"
+            ]
+        },
+        {
+            "label": "run-debug-without-compile",
+            "type": "process",
+            "options": {
+                "shell": {
+                    "executable": "powershell"
+                },
+                "cwd": "${workspaceFolder}/build-debug"
+            },
+            "command": "${workspaceFolder}/build-debug/imolProgram.exe"
+        },
+        {
+            "label": "qmake-release",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "powershell"
+                },
+                "cwd": "${workspaceFolder}/build-release"
+            },
+            "command": "C:\\Qt\\5.15.2\\msvc2019_64\\bin\\qmake.exe",
+            "args": [
+                "../${workspaceFolderBasename}.pro",
+                "-spec",
+                "win32-msvc",
+                "\"CONFIG+=qtquickcompiler\"",
+                "\"QMAKE_CXXFLAGS+=/FC\"",  
+                // "QMAKE_LFLAGS+=/INCREMENTAL:NO"
+            ]
+        },
+        {
+            "label": "make-release",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "powershell"
+                },
+                "cwd": "${workspaceFolder}/build-release"
+            },
+            "command": "C:\\Qt\\Tools\\QtCreator\\bin\\jom\\jom.exe",
+            "args": [
+                "-f",
+                "Makefile",
+                "-j8"
+            ],
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "dependsOn": [
+                "qmake-release"
+            ]
+        },
+        {
+            "label": "run-release",
+            "type": "process",
+            "options": {
+                "shell": {
+                    "executable": "powershell"
+                },
+                "cwd": "${workspaceFolder}/build-release"
+            },
+            "command": "${workspaceFolder}/build-release/Robot Assist.exe",
+            "dependsOn": [
+                "make-release"
+            ]
+        },
+        {
+            "label": "run-release-without-compile",
+            "type": "process",
+            "options": {
+                "shell": {
+                    "executable": "powershell"
+                },
+                "cwd": "${workspaceFolder}/build-release"
+            },
+            "command": "${workspaceFolder}/build-release/Robot Assist.exe",
+        },
+        {
+            "label": "clean-debug",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "powershell"
+                },
+                "cwd": "${workspaceFolder}/build-debug"
+            },
+            "command": "C:\\Qt\\Tools\\QtCreator\\bin\\jom\\jom.exe",
+            "args": [
+                "clean"
+            ]
+        },
+        {
+            "label": "clean-release",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "powershell"
+                },
+                "cwd": "${workspaceFolder}/build-release"
+            },
+            "command": "C:\\Qt\\Tools\\QtCreator\\bin\\jom\\jom.exe",
+            "args": [
+                "clean"
+            ]
+        }
+    ]
+}

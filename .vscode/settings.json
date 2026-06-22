@@ -1,0 +1,18 @@
+{
+    "search.exclude": {
+        "**/xmate/_historic": true,
+        "**/xmate/3rdparty": true,
+        "**/imolplatform": true,
+        "**/build-debug/xmate": true,
+        "**/build-release/xmate": true,
+        "**/build-debug": true,
+        "**/build-release": true,
+    },
+    "files.exclude": {
+        "**/xmate/_historic": true,
+        "**/build-debug/xmate": true,
+        "**/build-release/xmate": true,
+    },
+    "C_Cpp.default.compilerPath": "cl.exe",
+    "C_Cpp.errorSquiggles": "disabled"
+}

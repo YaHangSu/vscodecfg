@@ -1,0 +1,95 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Build && Debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build-debug/ImolProgram.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build-debug",
+            "environment": [],
+            "console": "integratedTerminal",
+            "preLaunchTask": "make-debug",
+            "visualizerFile": "C:\\Users\\suyah\\.visualizers\\qt5.natvis"
+        },
+        {
+            "name": "Build && Release",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build-release/Robot Assist.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build-release",
+            "environment": [],
+            "console": "integratedTerminal",
+            "preLaunchTask": "make-release"
+        },
+        {
+            "name": "Run-Debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build-debug/ImolProgram.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build-debug",
+            "environment": [],
+            "console": "integratedTerminal",
+            "visualizerFile": "C:\\Users\\suyah\\.visualizers\\qt5.natvis"
+        },
+        {
+            "name": "Run-Release",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build-release/Robot Assist.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build-release",
+            "environment": [],
+            "console": "integratedTerminal",
+        },
+        {
+            "name": "Attach to Process",
+            "type": "cppvsdbg",
+            "request": "attach",
+            "processId": "${command:pickProcess}",
+            "logging": {
+                "moduleLoad": true
+            },
+            "visualizerFile": "C:\\Users\\suyah\\.visualizers\\qt5.natvis"
+
+        },
+        {
+            "name": "C/C++ Runner: Debug Session",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "externalConsole": true,
+            "cwd": "c:/dev/RobotAssist",
+            "program": "c:/dev/RobotAssist/build/Debug/outDebug",
+            "MIMode": "gdb",
+            "miDebuggerPath": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Qt Debug (LLDB)",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build-debug/imolProgram.exe",
+            "cwd": "${workspaceFolder}/build-debug",
+            "args": [],
+            "env": {
+                "PATH": "C:/Qt/5.15.2/msvc2019_64/bin;${env:PATH}"
+            },
+            "stopOnEntry": false
+        }
+    ]
+}
