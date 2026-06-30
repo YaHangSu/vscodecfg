@@ -1,0 +1,24 @@
+{
+    "name": "xcode-dark",
+    "version": "1.0.0",
+    "engines": { "vscode": "^1.0.0" },
+    "contributes": {
+    "themes": [
+        {
+            "label": "Xcode  Dark",
+            "uiTheme": "vs-dark",
+            "path": "./xcode-dark.json"
+        },
+        {
+            "label": "Xcode  Dark+",
+            "uiTheme": "vs-dark",
+            "path": "./xcode-dark+.json"
+        },
+        {
+            "label": "Xcode Dark Modern ",
+            "uiTheme": "vs-dark",
+            "path": "./xcode-dark-morden.json"
+        }
+    ]
+}
+}
